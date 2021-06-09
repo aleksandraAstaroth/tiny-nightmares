@@ -1,0 +1,11 @@
+Model Information:
+* title:	Little Nightmares Celine.
+* source:	https://sketchfab.com/3d-models/little-nightmares-celine-f0c51fd1a2fc472a8fd8afb0cbdbbced
+* author:	Askasknot (https://sketchfab.com/Askasknot)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Little Nightmares Celine." (https://sketchfab.com/3d-models/little-nightmares-celine-f0c51fd1a2fc472a8fd8afb0cbdbbced) by Askasknot (https://sketchfab.com/Askasknot) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

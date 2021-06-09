@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>Tiny Nightmare</title>
+      <meta name="description" content="Tiny nightmare - Small game inspired by Little Nightmares, built using A-Frame">
+
+      <!--Libraries & external scripts Import-->
+      <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+      <script src="https://unpkg.com/aframe-dust-component@^1.0.4/aframe-dust-component.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+      <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+      <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+      <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
+
+  </head>
+
+  <body>
+
+      <a-scene physics="gravity: -9.8; restitution: 0.7;"
+      vr-mode-ui="enabled: false" id="scene"
+      inspector-plugin-recast
+      cursor="rayOrigin: mouse"
+      fog="type: linear; color: #090F6D; density: 5; near: 0.5; far: 7;"
+      dust-test>
+
+      <!-- ASSETS -->
+        <a-assets>
+            <img src="assets/wall.jpg" id="asset_wall">
+            <img src="assets/roof.png" id="asset_roof">
+            <img src="assets/ground.jpg" id="asset_ground">
+
+          <a-assets-item id="nav-mesh" src="assets/gltf-models/navmesh.gltf"></a-assets-item> 
+
+            <a-asset-item id="furnitures" src="assets/gltf-models/antique_room_furniture/scene.gltf"></a-asset-item>
+            <a-asset-item id="clock" src="assets/gltf-models/clock/scene.gltf"></a-asset-item>
+            <a-asset-item id="painting-beksinski" src="assets/gltf-models/painting_by_zdzislaw_beksinski_5/scene.gltf"></a-asset-item> 
+            <a-asset-item id="painting-beksinski2" src="assets/gltf-models/painting_by_zdzislaw_beksinski_2/scene.gltf"></a-asset-item>
+            <a-asset-item id="painting-beksinski3" src="assets/gltf-models/painting_by_zdzislaw_beksinski_3/scene.gltf"></a-asset-item>
+            <a-asset-item id="painting-beksinski4" src="assets/gltf-models/painting_by_zdzislaw_beksinski_4/scene.gltf"></a-asset-item>
+            <a-asset-item id="swing" src="assets/gltf-models/the_swing/scene.gltf"></a-asset-item>
+            <a-asset-item id="bunnies" src="assets/gltf-models/twin_bunnies/scene.gltf"></a-asset-item>
+            <a-asset-item id="kerosene-lamp" src="assets/gltf-models/kerosene_lamp_vintage_ww2/scene.gltf"></a-asset-item>
+            <a-asset-item id="skull-mirror" src="assets/gltf-models/skull_mirror/scene.gltf"></a-asset-item>
+            <a-asset-item id="siren-head" src="assets/gltf-models/siren_head_rigged./scene.gltf"></a-asset-item>
+           
+             <a-asset-item id="girl" src="assets/gltf-models/little_nightmares_celine./scene.gltf"></a-asset-item>
+             <a-asset-item id="musicbox" src="assets/gltf-models/music_box/scene.gltf"></a-asset-item>
+
+             <a-entity id="musicbox-sound" sound="src: url(assets/audio/[1 Hour Loop] Six's Theme (Togetherness I) - Little Nightmares 2 [Music BoxMIDI].mp3); autoplay: true; loop: true; refDistance: 1.0; rolloffFactor: 1.0; volume: 1; distanceModel: exponential;"></a-entity>
+        </a-assets>
+        
+      
+        
+
+         <!-- Decorations -->
+        <a-gltf-model static-body src=#furnitures  scale="3 3 3" position="0 0 -1"></a-gltf-model>
+        <a-gltf-model static-body src=#clock scale="2 2 2" position="2.5 2 3.6" rotation="0 220 0"></a-gltf-model>
+        <a-gltf-model static-body src=#painting-beksinski rotation="0 180 0" position="-0.0714 1.8 3.98254" scale="1.7 1.5 1.5" ></a-gltf-model>
+        <a-gltf-model static-body src=#painting-beksinski2 rotation="0 -90 0" position="-0.00886 2.77237 -3.92882" scale="1.7 1.5 1.5"></a-gltf-model>
+        <a-gltf-model static-body src=#painting-beksinski3 rotation="0 90 0" position="-2.93246 2.81 -0.29678" scale="0.5 0.5 0.5"></a-gltf-model>
+        <a-gltf-model static-body src=#painting-beksinski4 rotation="0 -90 0" position="2.87854 2.46293 -1.73254" scale="0.02 0.02 0.02" ></a-gltf-model>
+        <a-gltf-model static-body src=#swing visible="" scale="0.2 0.2 0.2" position="-2.11512 2.22246 -3.29431" ></a-gltf-model>
+        <a-gltf-model static-body id="bunnies" src=#bunnies scale="0.9 0.9 0.9" rotation="0 20 0" position="-1.2 -0.09 -3.5"></a-gltf-model> 
+        <a-gltf-model static-body src=#kerosene-lamp scale="0.5 0.5 0.5" position="-2.5 1.8 0.5"></a-gltf-model>
+        <a-gltf-model static-body id="mirror" src=#skull-mirror rotation="0 -90 0" scale="1.8 1.8 1.8" position="2.9 2 1.3" on-click="fadein: #beksinskis-quote;">
+          <a-text
+          id="beksinskis-quote"
+          font="https://cdn.aframe.io/fonts/DejaVu-sdf.fnt"
+          value="What matters is \n
+          what appears in your soul, \n
+          not what your eyes see \n
+          and what you can name. \n
+          - Z. Beksinski"
+          align="center"
+          color="white"
+          position="0.005 -0.3 -0.010"
+          width="0.8"
+          opacity="0"
+        ></a-text>
+        </a-gltf-model>
+
+        <a-text
+        id="listen"
+        font="https://cdn.aframe.io/fonts/DejaVu-sdf.fnt"
+        value="Face your inner demons,\n
+        and find your inner child, \n
+        for their subtle whispers, \n
+        hold the key \n
+        to your own freedom. \n
+        All you need to do... \n
+        ... is just LISTEN. "
+        align="center"
+        color="white"
+        position="-0.87524 1.18156 1.05959"
+        rotation="0 35 0"
+        scale="1 1.3 1"
+        width="0.8"
+        opacity="0"
+      ></a-text>
+
+      <!-- Lights -->
+        <a-entity position="0.015 1.7 -3" light="type:  point;  angle:  90; color:  #ff00e1;  groundColor:  #ff00e1;  intensity:  1.3; shadowBias:  1.05;"></a-entity>
+        <a-entity position="-2.5 1.6 0.4" light="type:  point;  angle:  90;  color:  #ff8800;  groundColor:  #ff8800;  intensity:  4;  shadowBias:  1.05;  decay:  3.64;  distance:  1.21;  penumbra:  1;  shadowRadius:  0.98"></a-entity>
+        <a-entity light="type: ambient; color:#a3b2ff; intensity: 0.7"></a-entity>
+        <a-dust num-points="5000" dispersion="20" color="#FF07CF" log=true point-size="0.15"></a-dust>
+        <a-dust num-points="2000" dispersion="20" color="#FF07CF" log=true point-size="0.5"></a-dust>
+        <a-dust num-points="2000" dispersion="20" color="#FF07CF" log=true point-size="0.3"></a-dust>
+      <!-- Room structure -->
+        <a-plane
+        static-body
+        id="floor"
+        position="0 0 0"
+        rotation="-90 0 0"
+        width="6"
+        height="8"
+        src="#asset_ground"
+        shadow
+      ></a-plane>
+      <a-gltf-model
+      id="nav-mesh"
+        src="#nav-mesh"
+        position="0 0 0"
+        visible="false"
+        nav-mesh
+      ></a-gltf-model>
+      <a-plane
+      static-body
+      id="back-wall"
+      position="0 2.5 -4"
+      rotation="0 0 0"
+      width="6"
+      height="5"
+      src="#asset_wall"
+    ></a-plane>
+    <a-plane
+      static-body
+      id="right-wall"
+      position="3 2.5 0"
+      rotation="0 -90 0"
+      width="8"
+      height="5"
+      src="#asset_wall"
+    ></a-plane>
+    <a-plane
+      static-body
+      id="left-wall"
+      position="-3 2.5 0"
+      rotation="0 90 0"
+      width="8"
+      height="5"
+      src="#asset_wall"
+    ></a-plane>
+    <a-plane
+      static-body
+      id="front-wall"
+      position="0 2.5 4"
+      rotation="0 180 0"
+      width="6"
+      height="5"
+      src="#asset_wall"
+    ></a-plane>
+    <a-plane
+    static-body
+    id="roof"
+    position="0 5 0"
+    rotation="90 0 0"
+    width="6"
+    height="8"
+    src="#asset_roof"
+    shadow
+  ></a-plane>
+  <a-entity id="rig" movement-controls="constrainToNavMesh: true">
+    <a-entity camera
+              id="camera"
+              position="0 1.6 0"
+              look-controls>
+      <!-- <a-cursor nav-debug-pointer raycaster="objects: [nav-mesh];"></a-cursor> -->
+    </a-entity>
+  </a-entity>
+      </a-scene>
+      <script>
+        AFRAME.registerComponent('on-click', {
+          schema: {
+        fadein: { type: 'selector', default: '' },
+      },
+    init: function () {
+      const el = this.el;
+      const data = this.data;
+    this.el.addEventListener('click', function (evt) {
+      data.fadein.setAttribute('animation', {
+              property: 'opacity',
+              from: 0,
+              to: 1,
+              dur: 5000,
+    })
+    const musicBox = document.createElement('a-gltf-model');
+    musicBox.setAttribute('sound', '#musicbox-sound');
+    musicBox.setAttribute('src', '#musicbox');
+    musicBox.setAttribute('id', 'musicBox');
+    musicBox.setAttribute('position', {x: 0, y: 0.3, z: 2});
+    musicBox.setAttribute('body', { type: 'static' });
+    musicBox.setAttribute('scale', { x: 0.5, y: 0.5, z: 0.5});
+    musicBox.setAttribute('rotation', { x: 0, y: 0, z: 0 });
+    el.sceneEl.appendChild(musicBox);
+
+    const celine = document.createElement('a-gltf-model');
+    celine.setAttribute('src', '#girl');
+    celine.setAttribute('position', {x: -0.75, y: 0, z: 1.65});
+    celine.setAttribute('body', { type: 'static' });
+    celine.setAttribute('scale', { x: 0.5, y: 0.5, z: 0.5});
+    celine.setAttribute('rotation', { x: 0, y: 0, z: 0 });
+     
+    const sirenHead = document.createElement('a-gltf-model');
+    sirenHead.setAttribute('src', '#siren-head');
+    sirenHead.setAttribute('position', {x: -1.3, y: 0, z: 3.15});
+    sirenHead.setAttribute('body', { type: 'static' });
+    sirenHead.setAttribute('scale', { x: 0.0035, y: 0.004, z: 0.004});
+    sirenHead.setAttribute('rotation', { x: 0, y: 135, z: 0 });
+    
+    el.sceneEl.appendChild(celine);
+    el.sceneEl.appendChild(sirenHead);
+
+    setTimeout(function () {
+      const message = document.querySelector('#listen');
+      message.setAttribute('animation', {
+              property: 'opacity',
+              from: 0,
+              to: 1,
+              dur: 3000,
+    })
+    }, 5000);
+    let musicElEvent = document.querySelector('#musicBox');
+    musicElEvent.addEventListener('click', function(e) {
+      window.location.href="dreamymaze.html"
+    })
+
+    })}});
+    AFRAME.registerComponent('dust-test', {
+          init: function () {
+              let sceneEl = this.el;
+              console.log("dust-test init");
+
+              let cameraEl = sceneEl.querySelector('[camera]');
+              let dustEl = sceneEl.querySelector('a-dust');
+
+              // delays setup until there's some slack time
+              requestIdleCallback( () => {
+                  dustEl.components.dust.setCamera(cameraEl);
+              });
+          }
+      });
+
+         </script>
+  </body>
+  </html>

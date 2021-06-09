@@ -1,0 +1,11 @@
+Model Information:
+* title:	Siren Head Rigged.
+* source:	https://sketchfab.com/3d-models/siren-head-rigged-3d97eca654d24122940dc5434ff5749d
+* author:	Leandcoel (https://sketchfab.com/Leandcoel3d)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Siren Head Rigged." (https://sketchfab.com/3d-models/siren-head-rigged-3d97eca654d24122940dc5434ff5749d) by Leandcoel (https://sketchfab.com/Leandcoel3d) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
